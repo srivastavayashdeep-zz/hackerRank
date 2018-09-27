@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -217,6 +218,17 @@ public class Test {
           }
       }
       return combinations[(int) n];
+    }
+
+    // Complete the extraLongFactorials function below.
+    static void extraLongFactorials(int n) {
+
+        BigInteger f = new BigInteger("1");
+
+        for (int i = 2; i <= n; i++)
+            f = f.multiply(BigInteger.valueOf(i));
+
+        System.out.println(f);
     }
 
     public static void main(String[] arg) {
