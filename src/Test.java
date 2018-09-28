@@ -263,11 +263,24 @@ public class Test {
         }
         int removal = s.length() - count;
         int add = t.length() - count;
-        if(removal+add == k || removal+add == 0){
+        if(s.equals(t)){
+            return "Yes";
+        }
+        if(removal+add <= k){
             return "Yes";
         }else {
             return "No";
         }
+    }
+
+    // Complete the dayOfProgrammer function below.
+    static String dayOfProgrammer(int year) {
+        if (year == 1918)
+            return "26.09.1918";
+        if (year % 4 == 0 && (year < 1918 || year % 400 == 0 || year % 100 != 0))
+            return "12.09."+year;
+        else
+            return "13.09."+year;
     }
 
     public static void main(String[] arg) {
@@ -282,6 +295,7 @@ public class Test {
         /*long[] a = {5,6,2,3};
         long aa = getWays1(10,a);
         System.out.println("value   :  "+aa);*/
-        appendAndDelete1("aba","aba",9);
+        //appendAndDelete1("abcd","abcdert",10);
+        dayOfProgrammer(2016);
     }
 }
