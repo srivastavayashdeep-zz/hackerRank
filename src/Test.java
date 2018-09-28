@@ -1,7 +1,5 @@
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 /*
 Solution for hacker rank problem
@@ -295,6 +293,47 @@ public class Test {
         }
     }
 
+    // Complete the sockMerchant function below.
+    static int sockMerchant(int n, int[] ar) {
+        Set<Integer> uniqueColours = Arrays.stream(ar).boxed().collect(Collectors.toSet());
+        int count = 0 ;
+        for(Integer colour : uniqueColours){
+            count += Arrays.stream(ar).boxed().filter(i -> i==colour).count() / 2;
+        }
+        return count;
+    }
+
+    /*
+     * Complete the pageCount function below.
+     */
+    static int pageCount(int n, int p) {
+        /*
+         * Write your code here.
+         */
+        int page1 = Math.abs((p) / 2);
+        if(n%2==0){
+            n++;
+        }
+        int page2 = Math.abs((p - (n)) / 2);
+        return page1 < page2 ? page1 : page2;
+
+    }
+
+    // Complete the countingValleys function below.
+    static int countingValleys(int n, String s) {
+        int v = 0;     // # of valleys
+        int lvl = 0;   // current level
+        for(char c : s.toCharArray()){
+            if(c == 'U') ++lvl;
+            if(c == 'D') --lvl;
+
+            // if we just came UP to sea level
+            if(lvl == 0 && c == 'U')
+                ++v;
+        }
+        return v;
+    }
+
     public static void main(String[] arg) {
         //int[] value = {140638725,436257910,953274816,734065819,362748590,953274816};
         //int[] value = {140638725,140638725,140638725,140638725,140638725,140638725};
@@ -309,6 +348,8 @@ public class Test {
         System.out.println("value   :  "+aa);*/
         //appendAndDelete1("abcd","abcdert",10);
         //dayOfProgrammer(2016);
-        bonAppetit(Arrays.asList(3,10,2,9),1,12);
+        //bonAppetit(Arrays.asList(3,10,2,9),1,12);
+        int[] arr = {10 ,20 ,20 ,10 ,10 ,30 ,50 ,10 ,20};
+        sockMerchant(9 , arr);
     }
 }
