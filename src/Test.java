@@ -283,6 +283,18 @@ public class Test {
             return "13.09."+year;
     }
 
+    // Complete the bonAppetit function below.
+    static void bonAppetit(List<Integer> bill, int k, int b) {
+
+        int totalBill = bill.stream().mapToInt(Integer::intValue).sum();
+        int average = Math.abs(totalBill - bill.get(k))/2;
+        if((average-b) != 0 ){
+            System.out.println(Math.abs(average-b));
+        }else {
+            System.out.println("Bon Appetit");
+        }
+    }
+
     public static void main(String[] arg) {
         //int[] value = {140638725,436257910,953274816,734065819,362748590,953274816};
         //int[] value = {140638725,140638725,140638725,140638725,140638725,140638725};
@@ -296,6 +308,7 @@ public class Test {
         long aa = getWays1(10,a);
         System.out.println("value   :  "+aa);*/
         //appendAndDelete1("abcd","abcdert",10);
-        dayOfProgrammer(2016);
+        //dayOfProgrammer(2016);
+        bonAppetit(Arrays.asList(3,10,2,9),1,12);
     }
 }
