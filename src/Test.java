@@ -231,6 +231,45 @@ public class Test {
         System.out.println(f);
     }
 
+
+    // Complete the appendAndDelete function below.
+    static String appendAndDelete(String s, String t, int k) {
+        if(t.length() - s.length() > k) return "No";
+
+      List<String> initial = Arrays.asList(s.split(""));
+      initial.stream().sorted();
+      for(String value : initial){
+
+      }
+      List<String> desired = Arrays.asList(s.split(""));
+      desired.stream().sorted();
+      Collections.frequency(initial, "a");
+      return "yes";
+    }
+
+    // Complete the appendAndDelete function below.
+    static String appendAndDelete1(String s, String t, int k) {
+
+        if(t.length() - s.length() > k) return "No";
+
+        int size = s.length()<t.length() ? s.length() : t.length();
+        int count = 0 ;
+        for(int i = 0 ;i < size ; i ++){
+            if(s.charAt(i) == t.charAt(i)){
+                ++count;
+            }else{
+                break;
+            }
+        }
+        int removal = s.length() - count;
+        int add = t.length() - count;
+        if(removal+add == k || removal+add == 0){
+            return "Yes";
+        }else {
+            return "No";
+        }
+    }
+
     public static void main(String[] arg) {
         //int[] value = {140638725,436257910,953274816,734065819,362748590,953274816};
         //int[] value = {140638725,140638725,140638725,140638725,140638725,140638725};
@@ -240,8 +279,9 @@ public class Test {
         countApplesAndOranges(7, 11, 5, 15, a, b);*/
         //kangaroo(4523,8092 ,9419 ,8076);
         //kangaroo(0,3 ,4 ,2);
-        long[] a = {5,6,2,3};
+        /*long[] a = {5,6,2,3};
         long aa = getWays1(10,a);
-        System.out.println("value   :  "+aa);
+        System.out.println("value   :  "+aa);*/
+        appendAndDelete1("aba","aba",9);
     }
 }
