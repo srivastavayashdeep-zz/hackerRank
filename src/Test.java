@@ -1,6 +1,13 @@
 import java.math.BigInteger;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static java.util.Arrays.binarySearch;
+import static java.util.stream.IntStream.range;
+
 /*
 Solution for hacker rank problem
 https://www.hackerrank.com/domains/algorithms
@@ -369,6 +376,35 @@ public class Test {
         return max;
     }
 
+    // Complete the catAndMouse function below.
+    static String catAndMouse(int x, int y, int z) {
+        if(Math.abs(x-z) > Math.abs(y-z)){
+            return "Cat B";
+        }else {
+                if(Math.abs(x-z) == Math.abs(y-z)){
+                return "Mouse C";
+                }else {
+                    return "Cat A";
+                    }
+            }
+
+    }
+
+    // Complete the climbingLeaderboard function below.
+    static int[] climbingLeaderboard(int[] scores, int[] alice) {
+        int[] rank = new int[alice.length];
+        int n = scores.length;
+        int[] array = range(0,n).map(i->scores[n-i-1]).distinct().toArray();
+        int index = 0;
+        int count = 0 ;
+        for(int score: alice) {
+            index = binarySearch(array, index<0?0:index, array.length, score);
+            if(index<0) index=-index-2;
+            rank[count] = (array.length-index);
+            count++;
+        }
+        return rank;
+    }
 
     public static void main(String[] arg) {
         //int[] value = {140638725,436257910,953274816,734065819,362748590,953274816};
@@ -385,10 +421,13 @@ public class Test {
         //appendAndDelete1("abcd","abcdert",10);
         //dayOfProgrammer(2016);
         //bonAppetit(Arrays.asList(3,10,2,9),1,12);
-        //int[] arr = {10 ,20 ,20 ,10 ,10 ,30 ,50 ,10 ,20};
+        int[] arr = {100,100,50,40,40,20,10};
+        int[] b = {5,25,50,120};
         //sockMerchant(9 , arr);
-        int[] a = {4};
-        int[] b = {5};
-        System.out.println(getMoneySpent(a ,b ,5));
+        //int[] a = {4};
+        //int[] b = {5};
+        //System.out.println(getMoneySpent(a ,b ,5));
+        //System.out.println(catAndMouse(1,2,3));
+        climbingLeaderboard(arr,b);
     }
 }
