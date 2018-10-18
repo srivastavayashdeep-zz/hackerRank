@@ -1,8 +1,5 @@
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.binarySearch;
@@ -406,6 +403,164 @@ public class Test {
         return rank;
     }
 
+    // Complete the hurdleRace function below.
+    static int hurdleRace(int k, int[] height) {
+    int tallestHurdle = Arrays.stream(height).max().getAsInt();
+    return tallestHurdle-k > 0 ? tallestHurdle-k : 0 ;
+    }
+
+    // Complete the designerPdfViewer function below.
+    static int designerPdfViewer(int[] h, String word) {
+        char alpha = 'a';
+        Map<Character,Integer> store = new HashMap<>();
+        for(int i = 0 ; i < 26 ; i ++){
+            store.put(alpha,h[i]);
+            alpha++;
+        }
+        char[] chars = word.toCharArray();
+        int max = 0 ;
+        for(char c : chars){
+            if(max < store.get(c))max = store.get(c);
+        }
+        return max * word.length();
+    }
+
+    // Complete the utopianTree function below.
+    static int utopianTree(int n) {
+        int height = 0;
+        int j = 0;
+        while(j<=n){
+            if(j ==0 )height=1;
+            else{
+                if(j %2 == 0 ){
+                    height += 1;
+                }else{
+                    height *= 2;
+                }
+            }
+            j++;
+        }
+        return height;
+    }
+
+    // Complete the angryProfessor function below.
+    static String angryProfessor(int k, int[] a) {
+    int[] studentOnTime = Arrays.stream(a).filter(value -> value<=0).toArray();
+    if(studentOnTime.length >= k)return "NO";
+    else return "YES";
+    }
+
+    // Complete the queensAttack function below.
+    static int queensAttack(int n, int k, int r_q, int c_q, int[][] obstacles) {
+        String value = new String();
+return 1;
+    }
+
+    // Complete the circularArrayRotation function below.
+    static int[] circularArrayRotation(int[] a, int k, int[] queries) {
+        for(int j = 0 ; j< k;j++) {
+            int temp = a[a.length - 1];
+            for (int i = 1; i < a.length; i++) {
+                a[a.length - i] = a[a.length - i - 1];
+            }
+            a[0] = temp;
+        }
+        int[] result = new int[queries.length];
+        for(int i = 0 ; i < queries.length ; i++){
+            result[i] = a[queries[i]];
+        }
+        return result;
+    }
+
+    static int[] circularArrayRotation1(int[] a, int k, int[] queries) {
+        int N = a.length; //an size of array of integers to rotate
+        int K = k; //an integer, the rotation count
+        int Q = queries.length;
+        int rot = K % N;
+        int[] result = new int[queries.length];
+        for (int i = 0; i < Q; i++) {
+            int idx = queries[i];
+            if (idx - rot >= 0)
+                result[i] = (a[idx - rot]);
+            else
+                result[i] = (a[idx - rot + a.length]);
+        }
+        return result;
+    }
+
+    // Complete the permutationEquation function below.
+    static int[] permutationEquation(int[] p) {
+        int[] inverse_p = new int[p.length + 1];
+        for(int i = 1 ; i <= p.length ; i++){
+            inverse_p[p[i-1]] = i;
+        }
+        int[] result = new int[p.length];
+        for(int i = 1; i<= p.length ;i++){
+            int y = inverse_p[inverse_p[i]];
+            result[i-1] = y;
+        }
+        return result;
+    }
+
+    // Complete the jumpingOnClouds function below.
+    static int jumpingOnClouds(int[] c, int k) {
+
+        int e=100;
+        for(int i=0;i<c.length;i=k+i)
+        {
+            if(c[i]==0)
+            {
+                e=e-1;
+            }
+            else
+            {
+                e=e-3;
+            }
+        }
+        return e;
+
+    }
+
+    // Complete the findDigits function below.
+    static int findDigits(int n) {
+        int r = n;
+        int count = 0;
+        while(r > 0){
+            if(r % 10 != 0 && n % (r % 10) == 0) count++;
+            r = r / 10;
+        }
+        return count;
+    }
+
+    // Complete the encryption function below.
+    static String encryption(String s) {
+
+        String str = s.replaceAll("\\s","");
+        int len = str.length();
+        double value = Math.sqrt(len);
+        double floorValueRow = Math.floor(value);
+        double ceilValueColumn = Math.ceil(value);
+
+         if(floorValueRow*ceilValueColumn < value){
+             floorValueRow++;
+         }
+
+         char[] charArray = s.toCharArray();
+         StringBuffer result = new StringBuffer();
+
+         for(int i = 0 ; i < ceilValueColumn ; i++){
+             int p = i;
+             for(int j = 0 ; j < ceilValueColumn ; j++){
+                 if(p < len)
+                 result.append(charArray[p]);
+                 p = (int) (p + ceilValueColumn);
+             }
+             result.append(" ");
+         }
+
+        return result.toString().trim();
+    }
+
     public static void main(String[] arg) {
         //int[] value = {140638725,436257910,953274816,734065819,362748590,953274816};
         //int[] value = {140638725,140638725,140638725,140638725,140638725,140638725};
@@ -421,13 +576,19 @@ public class Test {
         //appendAndDelete1("abcd","abcdert",10);
         //dayOfProgrammer(2016);
         //bonAppetit(Arrays.asList(3,10,2,9),1,12);
-        int[] arr = {100,100,50,40,40,20,10};
+        int[] arr = {100,-101,-50,40,-42,20,10};
         int[] b = {5,25,50,120};
         //sockMerchant(9 , arr);
         //int[] a = {4};
         //int[] b = {5};
         //System.out.println(getMoneySpent(a ,b ,5));
         //System.out.println(catAndMouse(1,2,3));
-        climbingLeaderboard(arr,b);
+        //climbingLeaderboard(arr,b);
+        //utopianTree(4);
+        //angryProfessor(4,arr);
+        //circularArrayRotation(arr,1,b);
+        int[] aa = {4 ,3 ,5 ,1 ,2};
+        //permutationEquation(aa);
+        encryption("haveaniceday");
     }
 }
